@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ArmorPay — UPI Scam Shield</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:#07112f;color:#f6f8ff;min-height:100vh}
+:root{--blue:#79a5ff;--deep:#07112f;--card:rgba(255,255,255,.09);--line:rgba(255,255,255,.14);--muted:#aeb9df;--green:#55d69f;--red:#ff6860;--gold:#f7c84b}
+body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 10% 10%,#19377b 0,transparent 32%),radial-gradient(circle at 90% 0,#302b75 0,transparent 30%),linear-gradient(150deg,#08143d,#07112f 65%,#0b1747)}
+body:after{content:"";position:fixed;inset:0;z-index:-1;opacity:.18;background-image:linear-gradient(#79a5ff22 1px,transparent 1px),linear-gradient(90deg,#79a5ff22 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(to bottom,#000,transparent 85%)}
+.app{width:min(100%,470px);margin:auto;min-height:100vh;padding-bottom:86px}.screen{padding:22px 18px}.hidden{display:none!important}
+.glass{background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.035));border:1px solid var(--line);box-shadow:inset 0 1px #ffffff35,0 18px 50px #0005;backdrop-filter:blur(22px)}
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}.brand{display:flex;gap:10px;align-items:center;font-weight:800;font-size:21px}.shield{width:38px;height:38px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,#9abaff,#6f91ff);color:#07112f;box-shadow:0 8px 25px #79a5ff66}.bell{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;cursor:pointer;position:relative}.bell i{position:absolute;top:-2px;right:-2px;background:var(--red);color:#fff;border-radius:10px;font-size:9px;font-style:normal;padding:2px 5px;font-weight:800}
+h1,h2,h3{margin:0}h1{font-size:29px;line-height:1.05}h2{font-size:18px}.muted{color:var(--muted)}.tiny{font-size:11px;color:var(--muted)}.eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:10px;font-weight:800;color:#aeb9df}
+.hero{border-radius:28px;padding:21px;margin-bottom:18px;background:radial-gradient(circle at 100% 0,#847cff66,transparent 50%),radial-gradient(circle at 0 100%,#5f9cff55,transparent 55%),rgba(255,255,255,.08);position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-90px;bottom:-100px;background:#fff2;filter:blur(35px)}
+.balance{font-size:40px;font-weight:800;margin:8px 0 16px;letter-spacing:-1px}.pill{display:inline-flex;align-items:center;gap:6px;border-radius:30px;padding:7px 10px;background:#ffffff10;border:1px solid #ffffff18;font-size:11px}.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}
+.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:17px 0}.action{border:0;color:white;background:transparent;font-size:11px;cursor:pointer}.action span{height:55px;width:55px;margin:auto auto 7px;border-radius:17px;display:grid;place-items:center;background:var(--card);border:1px solid var(--line);font-size:22px}
+.demo{display:flex;gap:12px;align-items:center;border-radius:18px;padding:14px;margin:18px 0;border:1px solid #f7c84b66;background:#f7c84b12}.demo .warn{width:42px;height:42px;border-radius:13px;background:var(--gold);color:#111;display:grid;place-items:center;font-size:20px}.demo button{border:0;background:var(--gold);color:#111;font-weight:800;border-radius:20px;padding:9px 12px;cursor:pointer}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border-radius:18px;overflow:hidden;margin-bottom:20px}.stat{text-align:center;padding:13px 5px;border-right:1px solid var(--line)}.stat:last-child{border:0}.stat b{font-size:20px}.gold{color:var(--gold)}
+.row{display:flex;align-items:center;justify-content:space-between;margin:18px 0 10px}.contacts{display:flex;gap:16px;overflow:auto;padding-bottom:5px}.contact{min-width:65px;text-align:center;font-size:11px;cursor:pointer;position:relative}.avatar{width:52px;height:52px;margin:auto auto 6px;border-radius:50%;display:grid;place-items:center;background:#ffffff0e;border:1px solid var(--line);position:relative;font-weight:800;color:var(--blue)}.verified{position:absolute;right:-2px;bottom:-2px;background:var(--green);color:#07112f;width:18px;height:18px;border-radius:50%;font-size:11px;display:grid;place-items:center}.addc .avatar{border-style:dashed;font-size:22px}
+.list{border-radius:18px;overflow:hidden}.tx{display:flex;align-items:center;gap:11px;padding:13px;border-bottom:1px solid var(--line)}.tx:last-child{border:0}.txicon{width:39px;height:39px;border-radius:50%;display:grid;place-items:center;background:#ffffff0b}.txmain{flex:1;min-width:0}.txmain b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px}.amount{font-weight:800;font-size:13px}.blocked{text-decoration:line-through;color:#8892b6}.tag{font-size:9px;background:var(--gold);color:#111;border-radius:8px;padding:3px 6px;font-weight:800}.right{text-align:right}.empty{padding:22px;text-align:center}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,470px);padding:9px 15px 13px;background:#07112fee;backdrop-filter:blur(20px);border-top:1px solid var(--line);display:flex;justify-content:space-around;z-index:5}.nav button{background:none;border:0;color:#8f9ac2;font-size:10px;cursor:pointer}.nav button.active{color:#79a5ff;font-weight:800}.navicon{font-size:19px;display:block;margin-bottom:2px}
+.topbar{display:flex;align-items:center;gap:12px;margin-bottom:22px}.back{border:1px solid var(--line);background:var(--card);color:white;border-radius:12px;width:40px;height:40px;cursor:pointer}.formcard{border-radius:23px;padding:17px}.field{margin:14px 0}.field label{display:block;font-size:11px;color:var(--muted);margin-bottom:7px;font-weight:700}.input,.textarea{width:100%;border:1px solid var(--line);background:#ffffff09;color:white;border-radius:13px;padding:13px;outline:none;font:inherit}.textarea{min-height:85px;resize:vertical}.input:focus,.textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #79a5ff22}.primary{width:100%;border:0;border-radius:15px;padding:14px;background:linear-gradient(135deg,#94b7ff,#728fff);color:#07112f;font-weight:900;cursor:pointer;box-shadow:0 10px 30px #79a5ff44}.primary:disabled,.secondary:disabled{opacity:.55;cursor:wait}.secondary{border:1px solid var(--line);background:var(--card);color:white;border-radius:13px;padding:11px;cursor:pointer}.example{color:var(--gold);font-size:11px;cursor:pointer;margin-top:8px;display:inline-block}.linkbtn{background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:12px;margin-top:14px}
+.scanbox{border:1px dashed #79a5ff88;border-radius:18px;padding:25px;text-align:center;background:#79a5ff08}.qr{font-size:65px;margin:4px}.analyzing{text-align:center;padding:38px 20px}.spinner{width:58px;height:58px;border:4px solid #ffffff18;border-top-color:var(--blue);border-radius:50%;margin:0 auto 18px;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.result{text-align:center;padding:25px 18px}.riskcircle{width:125px;height:125px;border-radius:50%;margin:10px auto 20px;display:grid;place-items:center;border:8px solid var(--red);box-shadow:0 0 35px #ff686055}.riskcircle strong{font-size:32px}.danger{color:var(--red)}.safe{color:var(--green)}.medium{color:var(--gold)}.signal{display:flex;gap:10px;text-align:left;padding:13px 0;border-bottom:1px solid var(--line)}.signal:last-child{border:0}.signalicon{width:32px;height:32px;border-radius:10px;background:#ff68601a;color:var(--red);display:grid;place-items:center;flex:none}.actionrow{display:flex;gap:9px;margin-top:18px}.actionrow button{flex:1}.successbox{background:#55d69f12;border:1px solid #55d69f44;border-radius:18px;padding:16px;margin:18px 0;text-align:left}
+.payline{background:#ffffff0c;border:1px solid var(--line);border-radius:14px;padding:11px;margin-bottom:6px;font-size:13px}
+.modal{position:fixed;inset:0;background:#000a;display:grid;place-items:center;z-index:20;padding:18px}.modal .formcard{width:min(100%,400px);background:#0d1a45}
+.toast{position:fixed;left:50%;top:18px;transform:translateX(-50%);background:#1a2a66;border:1px solid var(--line);padding:11px 16px;border-radius:14px;font-size:13px;z-index:30;box-shadow:0 10px 30px #0008;max-width:90%}.toast.err{border-color:var(--red)}
+@media(min-width:700px){body{padding:20px}.app{border:1px solid #ffffff14;border-radius:28px;overflow:hidden;box-shadow:0 30px 90px #0007}}
+</style>
+</head>
+<body>
+<div class="app">
+  <main id="home" class="screen">
+    <header><div class="brand"><div class="shield">🛡️</div>ArmorPay</div><div class="bell glass" onclick="openActivity()">🔔<i id="bellcount" class="hidden"></i></div></header>
+    <section class="hero glass">
+      <div class="row" style="margin:0"><span class="eyebrow">Total balance</span><span class="pill"><span class="dot"></span> Armor active</span></div>
+      <div class="balance" id="balance">₹—</div>
+      <div class="row" style="margin:0;border-top:1px solid #ffffff18;padding-top:12px"><span class="tiny" id="bankline">—</span><span class="tiny" id="upiline">—</span></div>
+    </section>
+    <div class="actions">
+      <button class="action" onclick="openPay('qr')"><span>▦</span>Scan QR</button>
+      <button class="action" onclick="openPay()"><span>📱</span>Pay UPI ID</button>
+      <button class="action" onclick="openPay('contact')"><span>👥</span>Pay contact</button>
+      <button class="action" onclick="openPay('link')"><span>🔗</span>Check link</button>
+    </div>
+    <section class="demo">
+      <div class="warn">⚠</div><div style="flex:1"><b style="font-size:13px">Got a payment request by SMS?</b><div class="tiny">Paste it — ArmorPay checks it before money moves.</div></div><button onclick="loadScam()">Try it</button>
+    </section>
+    <div class="stats glass"><div class="stat"><b id="st-checked">0</b><div class="tiny">Payments checked</div></div><div class="stat"><b id="st-stopped">0</b><div class="tiny">Scams stopped</div></div><div class="stat"><b class="gold" id="st-protected">₹0</b><div class="tiny">Money protected</div></div></div>
+    <div class="row"><span class="eyebrow">Verified contacts</span><span class="tiny">Hold to remove</span></div>
+    <div class="contacts" id="contacts"></div>
+    <div class="row"><span class="eyebrow">Recent activity</span><span class="tiny" style="cursor:pointer" onclick="openActivity()">See all</span></div>
+    <div class="list glass" id="recent"></div>
+    <div style="text-align:center;margin-top:16px"><button class="linkbtn" onclick="resetDemo()">Reset demo data</button></div>
+  </main>
+
+  <main id="activity" class="screen hidden">
+    <div class="topbar"><button class="back" onclick="show('home')">←</button><div><h2>All activity</h2><div class="tiny">Every payment, including blocked ones</div></div></div>
+    <div class="list glass" id="alltx"></div>
+  </main>
+
+  <main id="pay" class="screen hidden">
+    <div class="topbar"><button class="back" onclick="show('home')">←</button><div><h2>Protect a payment</h2><div class="tiny">ArmorPay checks before money moves</div></div></div>
+    <div class="formcard glass">
+      <div class="scanbox" id="qrbox"><div class="qr">▦</div><b>Scan or paste payment details</b><div class="tiny">Paste a <code>upi://pay?…</code> link into the UPI field and we fill the rest.</div></div>
+      <div class="field"><label>UPI ID / Recipient</label><input id="upi" class="input" placeholder="example@upi" autocomplete="off"></div>
+      <div class="field"><label>Amount</label><input id="amount" class="input" type="number" min="1" step="any" placeholder="₹ 0"></div>
+      <div class="field"><label>Payment message / SMS</label><textarea id="message" class="textarea" placeholder="Paste the message you received..."></textarea></div>
+      <div class="field"><label>Payment link (optional)</label><input id="url" class="input" placeholder="https://..."></div>
+      <div class="field"><label>QR displayed name (optional)</label><input id="qrname" class="input" placeholder="Name shown on QR"></div>
+      <span class="example" onclick="loadScam()">Use the suspicious SMS example →</span>
+      <button id="analyzeBtn" class="primary" style="margin-top:15px" onclick="analyze()">🛡️ Analyze before paying</button>
+    </div>
+  </main>
+
+  <main id="analysis" class="screen hidden">
+    <div class="topbar"><div class="shield">🛡️</div><div><h2>Armor intelligence</h2><div class="tiny">Checking payment signals</div></div></div>
+    <div class="analyzing glass"><div class="spinner"></div><h2>Scanning payment...</h2><p class="muted">Checking recipient, amount, message, QR and link</p></div>
+  </main>
+
+  <main id="result" class="screen hidden">
+    <div class="topbar"><button class="back" onclick="show('pay')">←</button><div><h2>Safety result</h2><div class="tiny">ArmorPay analysis</div></div></div>
+    <div class="result glass">
+      <div id="riskcircle" class="riskcircle"><div><strong id="score">0</strong><div class="tiny">RISK SCORE</div></div></div>
+      <div id="level" class="danger" style="font-size:25px;font-weight:900">HIGH RISK</div>
+      <div class="payline" id="payline" style="margin-top:12px"></div>
+      <p id="summary" class="muted"></p>
+      <div id="signals" style="margin-top:20px"></div>
+      <div class="actionrow" id="actionrow"></div>
+      <div id="proceedwrap"></div>
+    </div>
+  </main>
+
+  <main id="success" class="screen hidden">
+    <div class="result" style="padding-top:65px">
+      <div style="font-size:72px" id="succicon">🛡️</div><h1 style="margin-top:10px" id="succtitle">Payment protected</h1>
+      <p class="muted" id="succtext"></p>
+      <div class="successbox" id="succbox"></div>
+      <button class="primary" onclick="goHome()">Return to ArmorPay</button>
+    </div>
+  </main>
+</div>
+
+<div id="modal" class="modal hidden" onclick="if(event.target===this)closeModal()">
+  <div class="formcard glass">
+    <h2>Add verified contact</h2>
+    <div class="field"><label>Name</label><input id="cname" class="input" placeholder="e.g. Meera Nair"></div>
+    <div class="field"><label>UPI ID</label><input id="cupi" class="input" placeholder="meera@okhdfc"></div>
+    <div class="actionrow"><button class="secondary" onclick="closeModal()">Cancel</button><button class="primary" onclick="saveContact()">Save contact</button></div>
+  </div>
+</div>
+
+<nav class="nav"><button id="navhome" class="active" onclick="goHome()"><span class="navicon">⌂</span>Home</button><button onclick="openPay()"><span class="navicon">₹</span>Pay</button><button onclick="openActivity()"><span class="navicon">🛡</span>Activity</button></nav>
+
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const inr=n=>'₹'+Number(n).toLocaleString('en-IN',{maximumFractionDigits:2});
+const SCAM={upi:"refund.desk2291@paytm",amount:24999,message:"Dear customer, your bank KYC has expired and your account will be BLOCKED within 2 hours. Pay the verification fee immediately to avoid suspension. - Customer Care",url:"http://sbi-kyc-verify-support.xyz/pay",qrname:"State Bank Support"};
+let contacts=[], currentScan=null, busy=false;
+
+/* ---------- In-browser "backend": same logic as the Python server, data saved in localStorage ---------- */
+const DB_KEY='armorpay_db_v1';
+const UPI_RE=/^[A-Za-z0-9._-]{2,256}@[A-Za-z]{2,64}$/;
+const URGENCY_RE=/urgent|immediately|blocked|suspend(ed)?|within\s+\d+\s*(hour|hr|min|day)s?|expire[sd]?|last chance|final notice|act now|today only/i;
+const IMPERS_RE=/bank|customer care|support|kyc|official|rbi|refund|helpdesk|help desk/i;
+const MONEY_RE=/\b(otp|pin|cvv|password)\b|verification fee|processing fee|pay .{0,20}fee|pay .{0,20}to (avoid|receive|claim)/i;
+const BADURL_RE=/bit\.ly|tinyurl|t\.co|\.xyz|\.top|\.click|\.icu|-support|-kyc|verify-|refund|login-|kyc-/i;
+const URLTEXT_RE=/https?:\/\/[^\s]+/gi;
+const isoAt=h=>new Date(Date.now()+h*3600e3).toISOString();
+
+function seedDB(){
+  const tx=(name,upi,amount,direction,status,off,id)=>({id,name,upi,amount,direction,status,scan_id:null,created_at:isoAt(off)});
+  return {
+    account:{holder:'Jitesh',bank:'HDFC',last4:'4821',upi:'jitesh@okhdfc',balance:48260.50},
+    contacts:[{id:1,name:'Priya Sharma',upi:'priya.sharma@okaxis'},{id:2,name:'Ravi Kumar',upi:'ravi.k@oksbi'},
+              {id:3,name:'Anjali Menon',upi:'anjali.m@okhdfc'},{id:4,name:'Karthik R',upi:'karthik.r@ybl'}],
+    blocklist:{'refund.desk2291@paytm':'Known KYC refund scam'},
+    scans:[], seedChecked:42,
+    txs:[tx('FreshMart Grocery','freshmart@icici',642,'debit','completed',-2,1),
+         tx('Priya Sharma','priya.sharma@okaxis',1500,'credit','completed',-27,2),
+         tx('Unknown · refund.desk2291','refund.desk2291@paytm',24999,'debit','blocked',-80,3),
+         tx('Unknown · lottery.claim88','lottery.claim88@ybl',4201,'debit','blocked',-400,4),
+         tx('Unknown · upi.cashback17','upi.cashback17@paytm',2200,'debit','blocked',-500,5)],
+    nid:{contact:5,scan:1,tx:6}
+  };
+}
+let DB=(()=>{try{const s=localStorage.getItem(DB_KEY);if(s)return JSON.parse(s)}catch(_){}return seedDB()})();
+function saveDB(){try{localStorage.setItem(DB_KEY,JSON.stringify(DB))}catch(_){}}
+function resetDB(){try{localStorage.removeItem(DB_KEY)}catch(_){}DB=seedDB();saveDB()}
+
+class ApiError extends Error{}
+const fail=m=>{throw new ApiError(m)};
+
+function knownRecipients(){
+  const k={};
+  DB.contacts.forEach(c=>k[c.upi.toLowerCase()]=c.name);
+  DB.txs.filter(t=>t.status==='completed'&&t.direction==='debit').forEach(t=>{if(!(t.upi.toLowerCase() in k))k[t.upi.toLowerCase()]=t.name});
+  return k;
+}
+function analyzePayment(upi,amount,message,url,qrname){
+  const u=upi.toLowerCase(), known=knownRecipients(), sig=[];
+  if(!UPI_RE.test(upi))sig.push(['Invalid UPI recipient','The payment address does not look like a valid UPI ID.',18]);
+  if(DB.blocklist[u])sig.push(['Reported recipient','This UPI ID is on the ArmorPay scam list: '+DB.blocklist[u]+'.',35]);
+  if(!(u in known))sig.push(['New recipient','You have not paid this UPI ID before.',15]);
+  if(URGENCY_RE.test(message))sig.push(['Urgency language','The message pressures you to act quickly.',15]);
+  if(IMPERS_RE.test(message)&&!(u in known))sig.push(['Possible impersonation','The message claims to be bank/support related but the recipient is unverified.',12]);
+  if(MONEY_RE.test(message))sig.push(['Asks for fee or secret codes',"Banks never ask for OTP/PIN or a 'verification fee' over SMS.",15]);
+  const urls=[url].concat(message.match(URLTEXT_RE)||[]).filter(Boolean);
+  if(urls.some(x=>!x.toLowerCase().startsWith('https://')||BADURL_RE.test(x)))sig.push(['Suspicious link','The link does not match a verified bank or merchant domain.',20]);
+  if(qrname&&!(u in known)){
+    const qn=qrname.trim().toLowerCase();
+    const clash=DB.contacts.some(c=>c.name.toLowerCase()===qn&&c.upi.toLowerCase()!==u);
+    if(clash||IMPERS_RE.test(qrname))sig.push(['QR / recipient mismatch','The name shown on the QR does not match a trusted recipient for this UPI ID.',25]);
+  }
+  if(amount>=10000)sig.push(['Unusual amount','This payment is much larger than typical UPI payments for you.',15]);
+  else if(amount>3000)sig.push(['Higher than usual amount','This is above your typical small UPI payments.',8]);
+  const score=Math.min(100,sig.reduce((a,s)=>a+s[2],0));
+  const level=score>=85?'CRITICAL RISK':score>=60?'HIGH RISK':score>=30?'MEDIUM RISK':'LOW RISK';
+  return {score,level,signals:sig.map(([title,detail,weight])=>({title,detail,weight}))};
+}
+const labelFor=upi=>knownRecipients()[upi.toLowerCase()]||('Unknown · '+upi.split('@')[0]);
+const sortedTx=()=>DB.txs.slice().sort((a,b)=>new Date(b.created_at)-new Date(a.created_at)||b.id-a.id);
+function pendingScan(id){
+  const s=DB.scans.find(x=>x.id===Number(id));
+  if(!s)fail('Scan not found');
+  if(s.status!=='pending')fail('This payment was already '+s.status);
+  return s;
+}
+function addTx(name,upi,amount,status,scanId){
+  DB.txs.push({id:DB.nid.tx++,name,upi,amount,direction:'debit',status,scan_id:scanId,created_at:new Date().toISOString()});
+}
+
+const ROUTES={
+  'GET /home':()=>{
+    const blocked=DB.txs.filter(t=>t.status==='blocked');
+    return {account:{...DB.account},
+      stats:{checked:DB.seedChecked+DB.scans.length,stopped:blocked.length,protected:blocked.reduce((a,t)=>a+t.amount,0)},
+      contacts:DB.contacts.map(c=>({...c})),recent:sortedTx().slice(0,5)};
+  },
+  'GET /transactions':()=>({transactions:sortedTx().slice(0,200)}),
+  'POST /analyze':b=>{
+    const upi=String(b.upi||'').trim(), message=String(b.message||'').slice(0,2000),
+          url=String(b.url||'').trim().slice(0,1000), qrname=String(b.qrname||'').trim().slice(0,120);
+    const amount=Number(b.amount||0);
+    if(Number.isNaN(amount))fail('Amount must be a number');
+    if(!upi)fail('Enter a UPI ID or recipient');
+    if(amount<=0)fail('Enter an amount greater than 0');
+    const r=analyzePayment(upi,amount,message,url,qrname);
+    const scan={id:DB.nid.scan++,upi,amount,message,url,qrname,score:r.score,level:r.level,signals:r.signals,status:'pending',created_at:new Date().toISOString()};
+    DB.scans.push(scan);
+    return {scan_id:scan.id,score:r.score,level:r.level,signals:r.signals,upi,amount};
+  },
+  'POST /block':b=>{
+    const s=pendingScan(b.scan_id); s.status='blocked';
+    addTx(labelFor(s.upi),s.upi,s.amount,'blocked',s.id);
+    if(s.score>=60&&!DB.blocklist[s.upi.toLowerCase()])DB.blocklist[s.upi.toLowerCase()]='Blocked by you after a high-risk alert';
+    return {ok:true,amount:s.amount};
+  },
+  'POST /pay':b=>{
+    const s=pendingScan(b.scan_id);
+    if(s.score>=60&&!b.confirm_risk)fail('High-risk payment needs explicit confirmation');
+    if(s.amount>DB.account.balance)fail('Insufficient balance');
+    DB.account.balance=Math.round((DB.account.balance-s.amount)*100)/100;
+    s.status='paid'; addTx(labelFor(s.upi),s.upi,s.amount,'completed',s.id);
+    return {ok:true,balance:DB.account.balance};
+  },
+  'POST /contacts':b=>{
+    const name=String(b.name||'').trim().slice(0,60), upi=String(b.upi||'').trim().toLowerCase();
+    if(!name)fail('Enter a name');
+    if(!UPI_RE.test(upi))fail('Enter a valid UPI ID like name@bank');
+    if(DB.contacts.some(c=>c.upi.toLowerCase()===upi))fail('That UPI ID is already saved');
+    const c={id:DB.nid.contact++,name,upi}; DB.contacts.push(c); return c;
+  }
+};
+async function api(path,method='GET',body){
+  let key=method+' '+path, m;
+  try{
+    let res;
+    if(method==='DELETE'&&(m=path.match(/^\/contacts\/(\d+)$/))){
+      DB.contacts=DB.contacts.filter(c=>c.id!==Number(m[1])); res={ok:true};
+    }else if(ROUTES[key]){res=ROUTES[key](body||{})}
+    else fail('Not found');
+    saveDB();
+    return JSON.parse(JSON.stringify(res));
+  }catch(e){
+    if(e instanceof ApiError)throw new Error(e.message);
+    throw e;
+  }
+}
+
+function toast(msg,err){const t=document.createElement('div');t.className='toast'+(err?' err':'');t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),3200)}
+
+function show(id){
+  document.querySelectorAll('main').forEach(x=>x.classList.add('hidden'));$(id).classList.remove('hidden');
+  document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));
+  if(id==='home')$('navhome').classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function when(iso){
+  const d=new Date(iso), n=new Date(), hm=d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:false});
+  const days=Math.round((new Date(n.toDateString())-new Date(d.toDateString()))/864e5);
+  if(days===0)return 'Today, '+hm; if(days===1)return 'Yesterday';
+  return d.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'});
+}
+function txHTML(t){
+  const blocked=t.status==='blocked', credit=t.direction==='credit';
+  const amt=blocked?`<span class="amount blocked">-${inr(t.amount)}</span><br><span class="tag">Blocked by Armor</span>`
+    :`<span class="amount ${credit?'safe':''}">${credit?'+':'-'}${inr(t.amount)}</span>`;
+  const icon=blocked?'⚠':credit?'↙':'↗';
+  return `<div class="tx"><div class="txicon">${icon}</div><div class="txmain"><b>${esc(t.name)}</b><span class="tiny">${when(t.created_at)} · ${esc(t.upi)}</span></div><div class="right">${amt}</div></div>`;
+}
+
+async function loadHome(){
+  const h=await api('/home');
+  $('balance').textContent=inr(h.account.balance);
+  $('bankline').textContent=`${h.account.bank} •••• ${h.account.last4}`;
+  $('upiline').textContent='🛡️ '+h.account.upi;
+  $('st-checked').textContent=h.stats.checked;
+  $('st-stopped').textContent=h.stats.stopped;
+  $('st-protected').textContent=h.stats.protected>=1000?'₹'+(h.stats.protected/1000).toFixed(1)+'k':inr(h.stats.protected);
+  $('bellcount').textContent=h.stats.stopped;$('bellcount').classList.toggle('hidden',!h.stats.stopped);
+  contacts=h.contacts;
+  $('contacts').innerHTML=contacts.map(c=>{
+    const ini=c.name.split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase();
+    return `<div class="contact" onclick="payContact(${c.id})" oncontextmenu="event.preventDefault();removeContact(${c.id})" data-id="${c.id}"><div class="avatar">${esc(ini)}<span class="verified">✓</span></div>${esc(c.name.split(' ')[0])}</div>`;
+  }).join('')+`<div class="contact addc" onclick="openModal()"><div class="avatar">+</div>Add</div>`;
+  attachLongPress();
+  $('recent').innerHTML=h.recent.map(txHTML).join('')||'<div class="empty tiny">No activity yet</div>';
+}
+function attachLongPress(){
+  document.querySelectorAll('.contact[data-id]').forEach(el=>{
+    let t; const id=+el.dataset.id;
+    const start=()=>{t=setTimeout(()=>{el.dataset.lp='1';removeContact(id)},700)}, end=()=>clearTimeout(t);
+    el.addEventListener('touchstart',start,{passive:true});el.addEventListener('touchend',end);el.addEventListener('touchmove',end);
+  });
+}
+async function removeContact(id){
+  const c=contacts.find(x=>x.id===id); if(!c||!confirm(`Remove ${c.name} from verified contacts?`))return;
+  await api('/contacts/'+id,'DELETE'); toast('Contact removed'); loadHome();
+}
+async function openActivity(){
+  const r=await api('/transactions');
+  $('alltx').innerHTML=r.transactions.map(txHTML).join('')||'<div class="empty tiny">No activity yet</div>';
+  show('activity');
+}
+
+function clearForm(){['upi','amount','message','url','qrname'].forEach(i=>$(i).value='')}
+function fill(x){$('upi').value=x.upi||'';$('amount').value=x.amount||'';$('message').value=x.message||'';$('url').value=x.url||'';$('qrname').value=x.qrname||''}
+function openPay(mode){
+  clearForm(); show('pay');
+  $('qrbox').style.display=(mode==='qr')?'block':'none';
+  if(mode==='contact'){ if(!contacts.length)return toast('Add a contact first',true); toast('Tap a contact on the home screen'); show('home'); }
+  if(mode==='link')$('url').focus(); else if(mode!=='contact')$('upi').focus();
+}
+function payContact(id){
+  const c=contacts.find(x=>x.id===id); if(!c)return;
+  clearForm(); fill({upi:c.upi,qrname:c.name}); $('qrbox').style.display='none'; show('pay'); $('amount').focus();
+}
+function loadScam(){fill(SCAM);$('qrbox').style.display='block';show('pay')}
+
+// Paste a upi://pay?pa=..&pn=..&am=.. string and auto-fill the form
+$('upi').addEventListener('input',e=>{
+  const v=e.target.value.trim(); if(!/^upi:\/\//i.test(v))return;
+  try{const p=new URL(v.replace(/^upi:\/\//i,'https://x/')).searchParams;
+    e.target.value=p.get('pa')||''; if(p.get('am'))$('amount').value=p.get('am'); if(p.get('pn'))$('qrname').value=p.get('pn');
+    if(p.get('tn')&&!$('message').value)$('message').value=p.get('tn'); toast('Payment details read from UPI link');}catch(_){}
+});
+
+async function analyze(){
+  if(busy)return; busy=true; $('analyzeBtn').disabled=true;
+  const payload={upi:$('upi').value.trim(),amount:$('amount').value,message:$('message').value,url:$('url').value.trim(),qrname:$('qrname').value.trim()};
+  try{
+    show('analysis');
+    const [res]=await Promise.all([api('/analyze','POST',payload),new Promise(r=>setTimeout(r,900))]);
+    currentScan=res; renderResult(res);
+  }catch(e){show('pay');toast(e.message,true)}
+  finally{busy=false;$('analyzeBtn').disabled=false}
+}
+function renderResult(r){
+  const s=r.score, col=s>=60?'#ff6860':s>=30?'#f7c84b':'#55d69f';
+  $('score').textContent=s; $('riskcircle').style.borderColor=col; $('riskcircle').style.boxShadow=`0 0 35px ${col}55`;
+  $('level').className=s>=60?'danger':s>=30?'medium':'safe'; $('level').textContent=r.level;
+  $('payline').innerHTML=`Paying <b>${inr(r.amount)}</b> to <b>${esc(r.upi)}</b>`;
+  $('summary').textContent=s>=60?'ArmorPay detected multiple signals associated with a potentially fraudulent payment.':s>=30?'ArmorPay found some signals that deserve a closer look.':'No major warning signals were detected.';
+  $('signals').innerHTML=r.signals.length?r.signals.map(x=>`<div class="signal"><div class="signalicon">⚠</div><div><b>${esc(x.title)}</b><div class="tiny">${esc(x.detail)}</div></div></div>`).join(''):'<div class="successbox"><b>✓ No major warning signals</b><div class="tiny">The payment can still be reviewed before completing it.</div></div>';
+  const risky=s>=60;
+  $('actionrow').innerHTML=`<button class="secondary" onclick="show('pay')">Edit payment</button>`+
+    (risky?`<button class="primary" onclick="blockPayment()">🛡️ Block payment</button>`
+          :`<button class="primary" onclick="payNow(false)">Pay ${inr(r.amount)}</button>`);
+  $('proceedwrap').innerHTML=risky?`<button class="linkbtn" onclick="payNow(true)">I understand the risk — pay anyway</button>`
+    :`<button class="linkbtn" onclick="blockPayment()">Cancel and block this payment</button>`;
+  show('result');
+}
+async function blockPayment(){
+  try{
+    await api('/block','POST',{scan_id:currentScan.scan_id});
+    $('succicon').textContent='🛡️';$('succtitle').textContent='Payment protected';
+    $('succtext').textContent='ArmorPay stopped the suspicious transaction before money moved.';
+    $('succbox').innerHTML=`<b>Why it was blocked</b><div class="tiny" style="margin-top:7px">${currentScan.signals.length?currentScan.signals.slice(0,4).map(s=>esc(s.title)).join(' · '):'Cancelled by you.'}</div>`;
+    show('success');
+  }catch(e){toast(e.message,true)}
+}
+async function payNow(confirmRisk){
+  if(confirmRisk&&!confirm('This payment looks like a scam. Money sent cannot usually be recovered. Pay anyway?'))return;
+  try{
+    const r=await api('/pay','POST',{scan_id:currentScan.scan_id,confirm_risk:confirmRisk});
+    $('succicon').textContent='✅';$('succtitle').textContent='Payment sent';
+    $('succtext').textContent=`${inr(currentScan.amount)} sent to ${currentScan.upi}.`;
+    $('succbox').innerHTML=`<b>New balance</b><div class="tiny" style="margin-top:7px">${inr(r.balance)}</div>`;
+    show('success');
+  }catch(e){toast(e.message,true)}
+}
+async function resetDemo(){if(!confirm('Reset balance, contacts and history to the demo data?'))return;resetDB();toast('Demo data reset');await loadHome()}
+async function goHome(){try{await loadHome()}catch(e){toast(e.message,true)}show('home')}
+
+function openModal(){$('cname').value='';$('cupi').value='';$('modal').classList.remove('hidden');$('cname').focus()}
+function closeModal(){$('modal').classList.add('hidden')}
+async function saveContact(){
+  try{await api('/contacts','POST',{name:$('cname').value,upi:$('cupi').value});closeModal();toast('Contact added');loadHome()}
+  catch(e){toast(e.message,true)}
+}
+loadHome().catch(e=>toast('Could not load: '+e.message,true));
+</script>
+</body>
+</html>
